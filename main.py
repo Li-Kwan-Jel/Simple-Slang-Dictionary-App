@@ -17,10 +17,10 @@ def read_dict():
                 for x in range(2,len(words_in_the_line)):
                     translation = translation + words_in_the_line[x] + " "
                 all_translations.append(translation)
-        file_found = True
         return (all_abbreviations,all_translations)
     except IOError:
         print("Cannot find the file.")
+        file_found = False # this is used for the IF clause below
         return file_found
 
 
@@ -37,10 +37,9 @@ def compare_dict(new_text,all_abbreviations,all_translations):
     return final_message
 
 
-read_dict()
-if read_dict():
+# main
+if read_dict(): # checks if the file is present and reads it
     new_text = input("Please enter the text: ").split(" ")
-    all_abbreviations, all_translations = read_dict() # this is helper variables
-
+    all_abbreviations, all_translations = read_dict() # these are helper variables
     translated_message = compare_dict(new_text,all_abbreviations,all_translations)
     print(translated_message)
